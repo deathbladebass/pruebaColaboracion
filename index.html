@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+    <title>Document</title>
+   
+</head>
+<body>
+    <div class="container">
+        <div class="row" id="estaciones">
+
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous'></script>
+
+    <script>
+$(document).ready(function(){
+    var apikey="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZWF0aGJsYWRlYmFzc0BnbWFpbC5jb20iLCJqdGkiOiI1YjZkMDExNi1jM2NmLTQ0NTItOTIxYy1jMGFhZDc5NWZjMTYiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTU1NjUyMDE4NSwidXNlcklkIjoiNWI2ZDAxMTYtYzNjZi00NDUyLTkyMWMtYzBhYWQ3OTVmYzE2Iiwicm9sZSI6IiJ9.mhqBn7a3zDAjDYHHOQTzXgAhihN3uYOP5Eq76yauxHI";
+          var url="https://opendata.aemet.es/opendata/sh/435dc633";
+          var urlapi="/?api_key="
+
+          $.getJSON(url + urlapi + apikey, function (response) {
+            console.log(response);
+            var html = "";
+            for (let index = 0; index < response.length; index++) {
+                const element = response[index];
+                html += '<div class="col-3">'
+                html += '<div class="card">'
+                html += '<div class="card-body">'
+                html += '<p><b>Altitud: </b>'+element.altitud+'</p>'
+                html += '<p><b>Latitud: </b>'+element.latitud+'</p>'
+                html += '<p><b>Longitud: </b>'+element.longitud+'</p>'
+                html += '<p><b>Nombre: </b>'+element.nombre+'</p>'
+                html += '<p><b>Provincia: </b>'+element.provincia+'</p>'
+                html += '</div>'
+                html += '</div>'
+                html += '</div>'
+                
+              }
+
+              $('#estaciones').html(html);
+          });
+          
+});
+       
+      </script>
+
+
+</body>
+</html>
